@@ -7,10 +7,10 @@ import {
   onAuthStateChanged,
   signOut, // Import signOut from Firebase auth
 } from "firebase/auth";
-import { auth, db } from "../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/firebase";
+import { auth, db } from "../../../lib/firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { useUserStore } from "../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/userStore"; // Import Zustand store
-import upload from "../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/upload";
+import { useUserStore } from "../../../lib/userStore"; // Import Zustand store
+import upload from "../../../lib/upload";
 
 const Login = () => {
   const [avatar, setAvatar] = useState({

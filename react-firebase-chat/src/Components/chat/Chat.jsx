@@ -9,9 +9,9 @@ import {
   onSnapshot,
   updateDoc,
 } from "firebase/firestore";
-import { db } from "../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/firebase";
-import { useChatStore } from "../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/chatStore";
-import { useUserStore } from "../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/userStore";
+import { db } from "../../../lib/firebase";
+import { useChatStore } from "../../../lib/chatStore";
+import { useUserStore } from "../../../lib/userStore";
 
 const Chat = () => {
   const [open, setOpen] = useState(false);

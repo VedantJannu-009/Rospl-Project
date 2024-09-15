@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import "./chatList.css";
 import Adduser from "./addUser/addUser";
-import { useUserStore } from "../../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/userStore";
+import { useUserStore } from "../../../../lib/userStore";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
-import { db } from "../../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/firebase";
-import { useChatStore } from "../../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/chatStore";
+import { db } from "../../../../lib/firebase";
+import { useChatStore } from "../../../../lib/chatStore";
 
 const ChatList = () => {
   const [chats, setChats] = useState([]);

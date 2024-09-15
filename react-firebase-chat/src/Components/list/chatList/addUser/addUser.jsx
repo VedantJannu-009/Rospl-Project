@@ -11,8 +11,8 @@ import {
 } from "firebase/firestore";
 import "./addUser.css";
 import { useState } from "react";
-import { useUserStore } from "../../../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/userStore"; // Assuming you're using Zustand for user state management
-import { db } from "../../../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/firebase";
+import { useUserStore } from "../../../../../lib/userStore"; // Assuming you're using Zustand for user state management
+import { db } from "../../../../../lib/firebase";
 
   const Adduser = () => {
     const [user, setUser] = useState(null);
