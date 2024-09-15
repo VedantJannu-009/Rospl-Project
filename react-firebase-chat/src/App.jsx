@@ -5,11 +5,13 @@ import List from "./Components/list/List";
 import Login from "./Components/Login/login";
 import Notification from "./Components/notification/notification";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../lib/firebase";
-import { useUserStore } from "../lib/userStore";
+import { auth } from "../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/firebase";
+import { useUserStore } from "../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/userStore";
+import { useChatStore } from "../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/chatStore";
 
 const App = () => {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
+  const { chatId } = useChatStore();
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
@@ -38,8 +40,8 @@ const App = () => {
       {currentUser ? (
         <>
           <List />
-          <Chat />
-          <Detail />
+          {chatId && <Chat />}
+          {chatId && <Detail />}
         </>
       ) : (
         <Login />

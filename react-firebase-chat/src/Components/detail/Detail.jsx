@@ -1,4 +1,4 @@
-import { auth } from "../../../lib/firebase";
+import { auth } from "../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/firebase";
 import "./detail.css";
 
 const Detail = () => {

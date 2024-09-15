@@ -11,12 +11,13 @@ import {
 } from "firebase/firestore";
 import "./addUser.css";
 import { useState } from "react";
-import { useUserStore } from "../../../../../lib/userStore"; // Assuming you're using Zustand for user state management
-import { db } from "../../../../../lib/firebase";
+import { useUserStore } from "../../../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/userStore"; // Assuming you're using Zustand for user state management
+import { db } from "../../../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/firebase";
 
   const Adduser = () => {
-  const [user, setUser] = useState(null);
-  const currentUser = useUserStore();
+    const [user, setUser] = useState(null);
+    // const currentUser = useUserStore();
+    const {currentUser} = useUserStore();
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -44,12 +45,14 @@ import { db } from "../../../../../lib/firebase";
     try {
       const newChatRef = doc(chatRef);
       console.log(newChatRef.id);
-
+      
       await setDoc(newChatRef, {
         createdAt: serverTimestamp(),
         messages: [],
       });
 
+      console.log('chatId: ', newChatRef.id)
+      console.log('receiverId: ', currentUser.id)
       await updateDoc(doc(userChatRef, user.id), {
         chats: arrayUnion({
           chatId: newChatRef.id,

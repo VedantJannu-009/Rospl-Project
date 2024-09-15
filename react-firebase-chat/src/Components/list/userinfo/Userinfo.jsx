@@ -1,5 +1,5 @@
 import "./userInfo.css"
-import { useUserStore } from "../../../../lib/userStore";
+import { useUserStore } from "../../../../../../../ROSLP/Rospl-Project/react-firebase-chat/lib/userStore";
 
 const Userinfo = () => {
 
