@@ -92,3 +92,14 @@
     }
   }
 }
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust the height to fit your needs */
+}
+
+p {
+  font-size: 18px; /* Optional: to style the text */
+}

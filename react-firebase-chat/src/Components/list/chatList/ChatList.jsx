@@ -114,9 +114,10 @@ const ChatList = () => {
             </div>
           </div>
         ))
-      ) : (
-        <p>No chats available</p>
-      )}
+      ) : <div className="centered-container">
+        <p>No chats Available</p>
+      </div>
+      }
 
       {addMode && <Adduser />}
     </div>

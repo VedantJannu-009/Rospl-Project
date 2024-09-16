@@ -26,6 +26,19 @@
         height: 20px;
         cursor: pointer;
     }
+
+    .logout-button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    
+    .logout-button:hover {
+      background-color: #041832;
+    }
   
   }
 }

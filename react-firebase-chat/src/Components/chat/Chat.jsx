@@ -204,7 +204,13 @@
 import { useEffect, useState, useRef } from "react";
 import "./chat.css";
 import EmojiPicker from "emoji-picker-react";
-import { arrayUnion, doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
+import {
+  arrayUnion,
+  doc,
+  getDoc,
+  onSnapshot,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../../../lib/firebase";
 import { useChatStore } from "../../../lib/chatStore";
 import { useUserStore } from "../../../lib/userStore";
@@ -217,11 +223,13 @@ const Chat = () => {
   const [img, setImg] = useState({ file: null, url: "" });
 
   const { currentUser } = useUserStore();
-  const { chatId, user, isCurrentUserBlocked, isReceiverBlocked } = useChatStore();
+  const { chatId, user, isCurrentUserBlocked, isReceiverBlocked } =
+    useChatStore();
   const endRef = useRef(null);
 
   useEffect(() => {
-    const scrollToEnd = () => endRef.current?.scrollIntoView({ behavior: "smooth" });
+    const scrollToEnd = () =>
+      endRef.current?.scrollIntoView({ behavior: "smooth" });
     scrollToEnd();
   }, [chat]);
 
@@ -275,7 +283,9 @@ const Chat = () => {
 
         if (userChatsSnapshot.exists()) {
           const userChatsData = userChatsSnapshot.data();
-          const chatIndex = userChatsData.chats.findIndex((c) => c.chatId === chatId);
+          const chatIndex = userChatsData.chats.findIndex(
+            (c) => c.chatId === chatId
+          );
 
           if (chatIndex !== -1) {
             userChatsData.chats[chatIndex].lastMessage = text;
@@ -290,7 +300,6 @@ const Chat = () => {
       // Clear text and image after sending
       setText("");
       setImg({ file: null, url: "" });
-
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -317,7 +326,9 @@ const Chat = () => {
         <div className="center">
           {chat?.messages?.map((message) => (
             <div
-              className={message.senderId === currentUser?.id ? "message own" : "message"}
+              className={
+                message.senderId === currentUser?.id ? "message own" : "message"
+              }
               key={message.createdAt}
             >
               <div className="texts">
