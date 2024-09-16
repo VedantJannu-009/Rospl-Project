@@ -1,6 +1,5 @@
 import "./userInfo.css"
 import { useUserStore } from "../../../../lib/userStore";
-import { auth } from "firebase/firestore"
 
 const Userinfo = () => {
 
@@ -16,9 +15,6 @@ const Userinfo = () => {
                 <img src="./more.png" alt="" />
                 <img src="./video.png" alt="" />
                 <img src="./edit.png" alt="" />
-                <button className="Logout" onClick={() => auth.signOut()}>
-          Logout
-        </button>
             </div>
         </div>
     )
