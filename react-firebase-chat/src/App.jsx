@@ -8,6 +8,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useUserStore } from "../lib/userStore";
 import { useChatStore } from "../lib/chatStore";
+import EmptyChat from "./Components/chat/EmptyChat";
+import EmptyDetails from "./Components/detail/EmptyDetails";
 
 const App = () => {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
@@ -40,8 +42,8 @@ const App = () => {
       {currentUser ? (
         <>
           <List />
-          {chatId && <Chat />}
-          {chatId && <Detail />}
+          {chatId ? <Chat /> : <EmptyChat />}
+          {chatId ? <Detail /> : <EmptyDetails />}
         </>
       ) : (
         <Login />

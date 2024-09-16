@@ -53,6 +53,11 @@
       }
     }
   }
+  .textContainer {
+    margin: auto;
+    padding: 5%;
+    font-size: .7rem;
+  }
 
   .chatMessages {
     height: auto;
