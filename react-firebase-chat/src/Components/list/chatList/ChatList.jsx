@@ -107,7 +107,7 @@ const ChatList = () => {
               backgroundColor: chat?.isSeen ? "transparent" : "#284ac7",
             }}
           >
-            <img src={chat.user.avatar} alt="" />
+            <img src={chat.user.avatar || "./avatar.png" } alt="" />
             <div className="text">
               <span>{chat.user.username || "Unknown"}</span>
               <p>{chat.lastMessage || "No messages yet"}</p>
