@@ -44,6 +44,7 @@
     }
 
     .icons {
+      cursor: pointer;
       display: flex;
       gap: 20px;
 
