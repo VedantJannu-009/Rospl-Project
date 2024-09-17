@@ -10,9 +10,9 @@ const EmptyDetails = () => {
         <h5>select a chat to display chat details..</h5>
       </div>
 
-      <button className="LogoutBottom" onClick={() => auth.signOut()}>
+      {/* <button className="LogoutBottom" onClick={() => auth.signOut()}>
         Logout
-      </button>
+      </button> */}
     </div>
   );
 };

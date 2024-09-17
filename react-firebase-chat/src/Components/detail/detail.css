@@ -78,40 +78,49 @@
         }
       }
     }
+  }
+  .detail_actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+
     button {
+      position: relative;
       padding: 15px;
       background-color: rgba(230, 74, 105, 0.553);
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      width: 100%;
 
       &:hover {
         background-color: rgba(238, 7, 54, 0.597);
       }
 
       &.Logout {
-        padding: 10px;
         background-color: #1a73e8;
 
         &:hover {
           background-color: #1a73e894;
         }
+        
       }
     }
   }
 }
 
-.LogoutBottom {
-  padding: 15px;
+.download-link {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: rgba(17, 25, 40, 0.3);
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  padding: 10px;
-  background-color: #1a73e8;
-  position: absolute;
-  bottom: 0;
-  margin: 0 5% 5% 5%;
-  width: 90%;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
 }
