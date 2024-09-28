@@ -72,14 +72,9 @@ const ChatList = () => {
   };
 
   // Use .includes() to correctly filter chats by username
-  // const filteredChats = chats.filter((c) =>
-  //   c.user.username.toLowerCase().includes(input.toLowerCase())
-  // );
-  const filteredChats = input
-  ? chats.filter((c) =>
-      c.user.username.toLowerCase().includes(input.toLowerCase())
-    )
-  : chats;
+  const filteredChats = chats.filter((c) =>
+    c?.user?.username?.toLowerCase().includes(input.toLowerCase())
+  );
 
   return (
     <div className="chatList">
@@ -112,9 +107,9 @@ const ChatList = () => {
               backgroundColor: chat?.isSeen ? "transparent" : "#284ac7",
             }}
           >
-            <img src={chat.avatar || "./avatar.png" } alt="" />
+            <img src={chat.user.avatar || "./avatar.png" } alt="" />
             <div className="text">
-              <span>{chat.username || "Unknown"}</span>
+              <span>{chat.user.username || "Unknown"}</span>
               <p>{chat.lastMessage || "No messages yet"}</p>
             </div>
           </div>
