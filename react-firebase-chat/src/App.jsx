@@ -10,46 +10,17 @@ import { useUserStore } from "../lib/userStore";
 import { useChatStore } from "../lib/chatStore";
 import EmptyChat from "./Components/chat/EmptyChat";
 import EmptyDetails from "./Components/detail/EmptyDetails";
+import { StateProvider, useStateProvider } from "../context/StateContext";
+import reducer, { initialState } from "../context/StateReducers";
+import MainContainer from "./MainContainer";
 
 const App = () => {
-  const { currentUser, isLoading, fetchUserInfo } = useUserStore();
-  const { chatId } = useChatStore();
-
-  useEffect(() => {
-    const unSub = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // If user is signed in, fetch user info
-        console.log("User authenticated:", user); // Log authenticated user
-        fetchUserInfo(user?.uid);
-      } else {
-        // If no user is signed in, reset user state
-        console.log("No user is signed in.");
-        fetchUserInfo(null); // Call with null to reset the state
-      }
-    });
-
-    return () => {
-      unSub();
-    };
-  }, [fetchUserInfo]);
-
-  // console.log("Current User:", currentUser);
-
-  if (isLoading) return <div className="loading">Loading...</div>;
+  
 
   return (
-    <div className="container">
-      {currentUser ? (
-        <>
-          <List />
-          {chatId ? <Chat /> : <EmptyChat />}
-          {chatId ? <Detail /> : <EmptyDetails />}
-        </>
-      ) : (
-        <Login />
-      )}
-      <Notification />
-    </div>
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <MainContainer />
+    </StateProvider>
   );
 };
 

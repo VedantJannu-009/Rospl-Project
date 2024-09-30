@@ -12,6 +12,10 @@ import { db } from "../../../lib/firebase";
 import { useChatStore } from "../../../lib/chatStore";
 import { useUserStore } from "../../../lib/userStore";
 import upload from "../../../lib/upload";
+import { useStateProvider } from "../../../context/StateContext";
+import { reducerCases } from "../../../context/constants";
+import { io } from "socket.io-client";
+import { HOST } from "../../../utils/ApiRoutes";
 
 const Chat = () => {
   const [chat, setChat] = useState();
@@ -23,6 +27,17 @@ const Chat = () => {
   const { chatId, user, isCurrentUserBlocked, isReceiverBlocked } =
     useChatStore();
   const endRef = useRef(null);
+  const [
+    {
+      userInformation,
+      currentChatUser,
+      videoCall,
+      voiceCall,
+      incomingVideoCall,
+      incomingVoiceCall,
+    },
+    dispatch,
+  ] = useStateProvider();
 
   useEffect(() => {
     const scrollToEnd = () =>
@@ -102,6 +117,30 @@ const Chat = () => {
     }
   };
 
+  const handleVoiceCall = () => {
+    dispatch({
+      type: reducerCases.SET_VOICE_CALL,
+      voiceCall: {
+        ...currentChatUser,
+        type: "out-going",
+        callType: "voice",
+        roomId: Date.now(),
+      },
+    });
+  };
+
+  const handleVideoCall = () => {
+    dispatch({
+      type: reducerCases.SET_VIDEO_CALL,
+      videoCall: {
+        ...currentChatUser,
+        type: "out-going",
+        callType: "video",
+        roomId: Date.now(),
+      },
+    });
+  };
+
   return (
     <div className="chat">
       <div className="top">
@@ -113,8 +152,8 @@ const Chat = () => {
           </div>
         </div>
         <div className="icons">
-          <img src="./phone.png" alt="" />
-          <img src="./video.png" alt="" />
+          <img src="./phone.png" alt="" onClick={handleVoiceCall} />
+          <img src="./video.png" alt="" onClick={handleVideoCall} />
           <img src="./info.png" alt="" />
         </div>
       </div>
@@ -130,7 +169,8 @@ const Chat = () => {
             >
               <div className="texts">
                 {message.img && <img src={message.img} alt="" />}
-                <p>{message.text}</p>
+                {message.text && <p>{message.text}</p>}
+                {message?.call && <p>{message.call}</p>}
               </div>
             </div>
           ))}

@@ -1,0 +1,15 @@
+.Container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: 30px;
+}
+
+.video-local-zego-class {
+  height: 7rem;
+  width: 8rem;
+}

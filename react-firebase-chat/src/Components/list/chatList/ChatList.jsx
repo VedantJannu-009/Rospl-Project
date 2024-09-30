@@ -6,6 +6,8 @@ import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import { db } from "../../../../lib/firebase";
 import { useChatStore } from "../../../../lib/chatStore";
 import { updateDoc } from "firebase/firestore";
+import { useStateProvider } from "../../../../context/StateContext";
+import { reducerCases } from "../../../../context/constants";
 
 const ChatList = () => {
   const [chats, setChats] = useState([]);
@@ -15,6 +17,7 @@ const ChatList = () => {
   // Use Zustand hook with selector to get currentUser
   const currentUser = useUserStore((state) => state.currentUser);
   const { chatId, changeChat } = useChatStore();
+  const [{ userInformation, currentChatUser }, dispatch] = useStateProvider();
 
   useEffect(() => {
     if (!currentUser) return; // If no user, exit early
@@ -44,7 +47,15 @@ const ChatList = () => {
     };
   }, [currentUser]);
 
+  // console.log({ userInformation });
+
   const handleSelect = async (chat) => {
+    // if (currentChatUser?.id === chat?.user?.id) {
+      dispatch({
+        type: reducerCases.CHANGE_CURRENT_CHAT_USER,
+        user: chat.user,
+      });
+    // }
     const userchats = chats.map((item) => {
       const { user, ...rest } = item;
       return rest;
@@ -107,17 +118,18 @@ const ChatList = () => {
               backgroundColor: chat?.isSeen ? "transparent" : "#284ac7",
             }}
           >
-            <img src={chat.user.avatar || "./avatar.png" } alt="" />
+            <img src={chat.user.avatar || "./avatar.png"} alt="" />
             <div className="text">
               <span>{chat.user.username || "Unknown"}</span>
               <p>{chat.lastMessage || "No messages yet"}</p>
             </div>
           </div>
         ))
-      ) : <div className="centered-container">
-        <p>No chats Available</p>
-      </div>
-      }
+      ) : (
+        <div className="centered-container">
+          <p>No chats Available</p>
+        </div>
+      )}
 
       {addMode && <Adduser />}
     </div>
