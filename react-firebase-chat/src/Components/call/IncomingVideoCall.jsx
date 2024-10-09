@@ -6,7 +6,6 @@ function IncomingVideoCall() {
   const [{ incomingVideoCall, socket }, dispatch] = useStateProvider();
 
   const acceptCall = () => {
-    
     dispatch({
       type: reducerCases.SET_VIDEO_CALL,
       videoCall: { ...incomingVideoCall, type: "in-coming" },
@@ -26,35 +25,19 @@ function IncomingVideoCall() {
   };
 
   return (
-    <div
-      style={{
-        height: "6rem",
-        width: "20rem",
-        position: "fixed",
-        bottom: "2rem",
-        marginBottom: 0,
-        right: "1.5rem",
-        zIndex: 50,
-        borderRadius: "0.125rem",
-        display: "flex",
-        gap: 5,
-        alignItems: "center",
-        justifyContent: "start",
-        padding: "1rem",
-        color: "white",
-        filter: "drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))",
-        border: "2px",
-        paddingLeft: "3.5rem",
-        paddingRight: "3.5rem",
-      }}
-    >
+    <div className="h-[7rem] w-[15rem] fixed bottom-5 right-12 z-50 flex gap-6 items-center justify-evenly p-1 text-white border-2 py-2 bg-inherit rounded-2xl">
       <div>
         <img
           src={incomingVideoCall?.avatar || "./avatar.png"}
           alt="avatar"
           width={70}
           height={70}
-          style={{ borderRadius: "9999px" }}
+          style={{
+            width: "50px",
+            height: "50px",
+            borderRadius: "50%",
+            objectFit: "cover",
+          }}
         />
       </div>
 

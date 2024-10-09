@@ -14,8 +14,8 @@ const Container = ({ data }) => {
   const [localStream, setLocalStream] = useState(undefined);
   const [publishStream, setPublishStream] = useState(undefined);
 
-  const appId = EnterYourAppId;
-  const serverSecret = "EnterYourServerSecret";
+  const appId = 1397124176;
+  const serverSecret = "d22ca19fac5adae2c92551b17c79a998";
   const roomID = data.roomId.toString();
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const Container = ({ data }) => {
                 const rmVideo = document.getElementById("remote-video");
                 const vd = document.createElement("video");
                 vd.id = streamList[0].streamID;
-                vd.className="absolute top-0 right-0 h-10 w-15"
+                vd.className = "fixed top-0 left-0 h-[95vh] w-[100vw] z-10";
                 vd.autoplay = true;
                 vd.playsInline = true;
                 vd.muted = false;
@@ -107,7 +107,7 @@ const Container = ({ data }) => {
           const videoElement = document.createElement("video");
           videoElement.id = "video-local-zego";
           // videoElement.className = "vlz";
-          videoElement.className = "absolute top-0 left-0 h-10 w-15"
+          videoElement.className = "fixed top-0 right-0 h-[20vh] w-[25vw] z-20";
           videoElement.autoplay = true;
           videoElement.muted = false;
           videoElement.playsInline = true;
@@ -149,7 +149,7 @@ const Container = ({ data }) => {
   };
 
   return (
-    <div className="border-conversation-border border-1 w-full bg-conversatoin-panel-background flex flex-col h-[100vh] overflow-hidden items-center justify-center text-white">
+    <div className="border-1 w-full flex flex-col h-[100vh] overflow-hidden items-center justify-center text-white">
       <div className="flex flex-col gap-3 items-center ">
         <span className="text-5xl">{data.name}</span>
         <span className="text-lg">
@@ -164,16 +164,21 @@ const Container = ({ data }) => {
             src={data?.avatar || "./avatar.png"}
             height={300}
             width={300}
-            className="rounded-full"
+            style={{
+              width: "200px",
+              height: "200px",
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
           ></img>
         </div>
       )}
 
-      <div className="my-5 relative" id="remote-video">
-        <div  id="local-audio"></div>
+      <div className="my-5 relative h-full w-full" id="remote-video">
+        <div id="local-audio"></div>
       </div>
 
-      <div className="h-16 w-16 bg-red-600 flex items-center justify-center rounded-full">
+      <div className="h-16 w-16 bg-red-600 flex items-center justify-center rounded-full fixed bottom-20 z-50">
         <MdOutlineCallEnd
           className="text-3xl cursor-pointer"
           onClick={endCall}
