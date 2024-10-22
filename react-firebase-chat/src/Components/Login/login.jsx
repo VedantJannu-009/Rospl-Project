@@ -85,7 +85,6 @@ const Login = () => {
       // Fetch the user data immediately after signing in
       const userDoc = await getDoc(doc(db, "users", res.user.uid));
       if (userDoc.exists()) {
-
         // setCurrentUser(userDoc.data());
         toast.success("Welcome Back!");
       } else {
